@@ -13,7 +13,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     private int networkXSize;
     private int getNetworkYSize;
     private int maxNumberOfDocuments;
-    private HashMap<Integer,Document> library;
+    private HashMap<String,Document> library;
     private Position position;
     private Area area;
     private ArrayList<Client> neighbourList;
@@ -47,10 +47,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Document getDocument(String documentName) throws NoSuchDocument {
-        int key = calculateKeyHash(documentName);
-
-        if(library.containsKey(key))
-            return library.get(key);
+        if(library.containsKey(documentName))
+            return library.get(documentName);
 
         throw new NoSuchDocument();
 	}
@@ -60,21 +58,10 @@ public class Client implements ClientInterface, ClientCommandInterface{
         //TODO position provided only for checking?
 		if(library.size() != maxNumberOfDocuments) {
             if(position.equals(p)) {
-                library.put(calculateKeyHash(d.getName()),d);
+                library.put(d.getName(),d);
             } else throw new CANException("wrong location");
         } else throw new NoAdditionalStorageAvailable();
 	}
-
-    public int calculateKeyHash(String s) {
-        int value = 0;
-
-        for(int i = 1; i <= s.length();i++) {
-            char c = s.charAt(i);
-            value += Character.valueOf(c) * i;
-        }
-        return value;
-    }
-
 
 	@Override
 	public void deleteDocument(String documentName) throws NoSuchDocument {
