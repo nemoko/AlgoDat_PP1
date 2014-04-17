@@ -6,6 +6,7 @@ import ads1.ss14.can.exceptions.NoSuchDocument;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Client implements ClientInterface, ClientCommandInterface{
 
@@ -16,7 +17,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     private HashMap<String,Document> library;
     private Position position;
     private Area area;
-    private ArrayList<Client> neighbourList;
+    private ArrayList<ClientInterface> neighbourList;
 
     /**
 	 * Constructs a new Client
@@ -95,18 +96,24 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Iterable<ClientInterface> getNeighbours() {
-		//TODO Implement me!
-		return null;
+        return neighbourList;
 	}
 	
 	@Override
 	public void addNeighbour(ClientInterface newNeighbour){
-		//TODO Implement me!
+		neighbourList.add( (Client) newNeighbour);
 	}
 	
 	@Override
 	public void removeNeighbour(String clientID) {
-		//TODO Implement me!
+		for(int i = 0; i < neighbourList.size(); i++) {
+            Client client = (Client) neighbourList.get(i);
+
+            if( client.getUniqueID().equals(clientID)) {
+                neighbourList.remove(i);
+                return;
+            }
+        }
 	}
 	
 	@Override
@@ -172,6 +179,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		
 	@Override
 	public void adaptNeighbours(ClientInterface joiningClient) {
+
 		//TODO Implement me!
 	}
 
@@ -209,9 +217,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         for(int x = 0; x < name.length(); x++) {
             char c = name.charAt(x);
-            summe = Character.valueOf(c);
+            summe += Character.valueOf(c) - Character.valueOf('a');
         }
-
         return summe;
     }
 
