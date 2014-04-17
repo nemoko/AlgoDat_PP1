@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02b0fda4-66ad-45f8-b4bb-1b7e31d28427" name="Default" comment="">
+    <list default="true" id="02b0fda4-66ad-45f8-b4bb-1b7e31d28427" name="Default" comment="hashKey removed&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" afterPath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PP.iws" />
@@ -60,25 +61,6 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Area.java" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Area.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="9" column="25" selection-start="230" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1872">
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="PP" />
@@ -88,11 +70,9 @@
       <file leaf-file-name="Client.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="58" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.33333334" vertical-offset="508" max-vertical-offset="2538">
+            <state line="160" column="53" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.70408165" vertical-offset="1836" max-vertical-offset="3618">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2199#2200#0" expanded="true" />
-                <element signature="e#2217#2218#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,6 +131,9 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1600" />
     <option name="y" value="51" />
@@ -185,8 +168,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -280,13 +263,13 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="83" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="42" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="107" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="51" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="115" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="54" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="241" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="399" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="39" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
@@ -296,6 +279,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="410" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="SearchEverywhereHistory" value="(" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -650,17 +634,22 @@
       <created>1397731938304</created>
       <updated>1397731938304</updated>
       <workItem from="1397731939878" duration="11661000" />
-      <workItem from="1397747814320" duration="2348000" />
+      <workItem from="1397747814320" duration="4519000" />
+      <workItem from="1397752965136" duration="2108000" />
     </task>
     <task id="LOCAL-00001" summary="hashKey removed">
       <created>1397750509780</created>
       <updated>1397750509780</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="hashKey removed&#10;">
+      <created>1397750517383</created>
+      <updated>1397750517383</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14009000" />
+    <option name="totallyTimeSpent" value="18288000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -684,14 +673,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="51" width="1200" height="1896" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928944" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -699,10 +688,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3338889" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2608319" sideWeight="0.5679733" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928944" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="combo" x="2393" y="1229" width="322" height="1158" />
@@ -711,6 +699,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -727,7 +716,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="hashKey removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="hashKey removed" />
+    <MESSAGE value="hashKey removed&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="hashKey removed&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -742,8 +732,6 @@
         <state line="92" column="27" selection-start="2489" selection-end="2489" vertical-scroll-proportion="0.0" vertical-offset="1656" max-vertical-offset="2862">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2199#2200#0" expanded="true" />
-            <element signature="e#2217#2218#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -795,13 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/exceptions/InvalidClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="22" selection-start="76" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Document.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.07867133" vertical-offset="0" max-vertical-offset="1144">
@@ -828,23 +809,9 @@
         <state line="143" column="9" selection-start="5180" selection-end="5180" vertical-scroll-proportion="0.5781787" vertical-offset="1559" max-vertical-offset="3222" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/testutils/NetworkRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="66" selection-start="2017" selection-end="2028" vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="7326">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/testutils/commands/JoinCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="33" selection-start="1231" selection-end="1242" vertical-scroll-proportion="0.45918366" vertical-offset="0" max-vertical-offset="1176" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/exceptions/CANException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Position.java">
@@ -861,6 +828,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/exceptions/CANException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/exceptions/InvalidClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="22" selection-start="76" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/testutils/NetworkRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="66" selection-start="2017" selection-end="2028" vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="7326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="37" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2826">
@@ -870,18 +858,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Area.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="230" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1872">
+        <state line="60" column="7" selection-start="1396" selection-end="1396" vertical-scroll-proportion="0.4845815" vertical-offset="56" max-vertical-offset="1872">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15840">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="58" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.33333334" vertical-offset="508" max-vertical-offset="2538">
+        <state line="160" column="53" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.70408165" vertical-offset="1836" max-vertical-offset="3618">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2199#2200#0" expanded="true" />
-            <element signature="e#2217#2218#0" expanded="true" />
           </folding>
         </state>
       </provider>

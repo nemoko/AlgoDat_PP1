@@ -104,9 +104,71 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	
 	@Override
 	public ClientInterface searchForResponsibleClient(Position p) {
-		//TODO Implement me!
+        //TODO Implement me!
+        // calculate Position using
+        // Hx(D.name,i), Hy(D.name,i) => p(x,y)
+
+        /*
+        Then search for the client responsible for p
+        C.area=[(x1,x2);(y1,y2)]
+
+        C.area.x1 < p.x < C.area.x2
+                    &&
+        C.area.y1 < p.y < C.area.y2
+
+        //if the search lands in C, end
+
+        //else
+        ask a neighbour with the shortest euklidian distance Q(C.area,p) between the area of the N and p-searchP
+
+        Q(N.area,p) =
+        r.x = max(min(C.area.x2,p.x),C.area.x1)
+        r.y = max(min(C.area.y2,p.y),C.area.y1)
+
+        Q(C.area,p) = sqr( (r.x - p.x)^2 + (r.y - p.y)^2 )
+
+            //if more clients with the same distance to p exist, choose the lowest lexicological ID(String.compareTo)
+
+        // if shit happens, i += 1;
+
+
+        */
+
 		return null;
 	}
+
+    /////////////////////////////////////////////////////////////
+    private int m() {
+        return networkXSize * getNetworkYSize;
+    }
+
+    private int rFunc(int summe, int i) {
+        return i * (( 2 * ( summe % (m()-2))) +1);
+    }
+
+    private int summe(String name) {
+        int summe = 0;
+
+        for(int x = 0; x < name.length(); x++) {
+            char c = name.charAt(x);
+            summe = Character.valueOf(c);
+        }
+
+        return summe;
+    }
+
+    private int hashF(int summe, int i) {
+        return ((summe % m()) + rFunc(summe,i)) % m();
+    }
+
+    private int hashX(String Docname, int i) {
+        return hashF(summe(Docname), i) % networkXSize;
+    }
+
+    private int hashY(String Docname, int i) {
+        return (hashF(summe(Docname), i)) / networkXSize;
+    }
+    /////////////////////////////////////////////////////////////
 
 	@Override
 	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
