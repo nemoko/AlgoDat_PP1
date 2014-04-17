@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02b0fda4-66ad-45f8-b4bb-1b7e31d28427" name="Default" comment="hashKey removed">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" afterPath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" />
+    <list default="true" id="02b0fda4-66ad-45f8-b4bb-1b7e31d28427" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PP.iws" />
@@ -651,12 +650,17 @@
       <created>1397731938304</created>
       <updated>1397731938304</updated>
       <workItem from="1397731939878" duration="11661000" />
-      <workItem from="1397747814320" duration="2338000" />
+      <workItem from="1397747814320" duration="2348000" />
     </task>
+    <task id="LOCAL-00001" summary="hashKey removed">
+      <created>1397750509780</created>
+      <updated>1397750509780</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13999000" />
+    <option name="totallyTimeSpent" value="14009000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
