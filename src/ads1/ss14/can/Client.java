@@ -155,6 +155,10 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
 		//TODO implemented?
 
+        if(entryPoint == null) {
+            return this;
+        }
+
         Area entry = entryPoint.getArea();
         Pair<Area, Area> pair;
 
@@ -179,7 +183,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		
 	@Override
 	public void adaptNeighbours(ClientInterface joiningClient) {
-
 		//TODO Implement me!
 	}
 
@@ -195,20 +198,28 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Document searchForDocument(String documentName) throws CANException {
+
+
+        for(int i = 0; i < neighbourList.size(); i++) {
+            Position p = new Position(hashX(documentName,i),hashY(documentName,i));
+
+            ClientInterface c = searchForResponsibleClient(p);
+        }
+
 		//TODO Implement me!
 		return null;
 	}
 
-    /*********************************************
+    /**********************************************
      *                                            *
      *               HASHFUNCTION                 *
      *                                            *
      **********************************************/
-    private int m() {
-        return networkXSize * getNetworkYSize;
+    private double m() {
+        return (area.getUpperX() - area.getLowerX()) * (area.getUpperY() - area.getLowerY());
     }
 
-    private int rFunc(int summe, int i) {
+    private double rFunc(int summe, int i) {
         return i * (( 2 * ( summe % (m()-2))) +1);
     }
 
@@ -222,15 +233,15 @@ public class Client implements ClientInterface, ClientCommandInterface{
         return summe;
     }
 
-    private int hashF(int summe, int i) {
+    private double hashF(int summe, int i) {
         return ((summe % m()) + rFunc(summe,i)) % m();
     }
 
-    private int hashX(String Docname, int i) {
+    private double hashX(String Docname, int i) {
         return hashF(summe(Docname), i) % networkXSize;
     }
 
-    private int hashY(String Docname, int i) {
+    private double hashY(String Docname, int i) {
         return (hashF(summe(Docname), i)) / networkXSize;
     }
     /***********************************************/
