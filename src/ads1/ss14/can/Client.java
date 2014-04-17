@@ -28,6 +28,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
         this.uniqueID = uniqueID;
         this.networkXSize = networkXSize;
         this.getNetworkYSize = networkYSize;
+
+        setArea(new Area(0, networkXSize, 0, networkYSize));
 	}
 
 	@Override
@@ -76,6 +78,10 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		return position;
 	}
 
+    public void setPosition(double lowerX, double upperX, double lowerY, double upperY) {
+        position = new Position((lowerX-upperX)/2,(lowerY-upperY)/2);
+    }
+
 	@Override
 	public Area getArea() {
 		return area;
@@ -84,6 +90,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	@Override
 	public void setArea(Area newArea) {
 		area = newArea;
+        setPosition(area.getLowerX(),area.getUpperX(),area.getLowerY(),area.getUpperY());
 	}
 
 	@Override
@@ -137,7 +144,58 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		return null;
 	}
 
-    /////////////////////////////////////////////////////////////
+	@Override
+	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
+		//TODO implemented?
+
+        Area entry = entryPoint.getArea();
+        Pair<Area, Area> pair;
+
+        /* SPLITTING AREA */
+        if(entry.getUpperY()-entry.getLowerY() > entry.getUpperX() - entry.getLowerX())
+            pair = entry.splitVertically();
+
+        else pair = entry.splitHorizontally();
+
+        this.setArea(pair.first);
+        entryPoint.setArea(pair.second);
+        /* END */
+
+		return entryPoint; //return the input???? i think so
+	}
+
+	@Override
+	public Iterable<Pair<Document, Position>> removeUnmanagedDocuments() {
+		//TODO Implement me!
+		return null;
+	}
+		
+	@Override
+	public void adaptNeighbours(ClientInterface joiningClient) {
+		//TODO Implement me!
+	}
+
+	@Override
+	public void addDocumentToNetwork(Document d) throws CANException {
+		//TODO Implement me!
+	}
+
+	@Override
+	public void removeDocumentFromNetwork(String documentName) {
+		//TODO Implement me!
+	}
+
+	@Override
+	public Document searchForDocument(String documentName) throws CANException {
+		//TODO Implement me!
+		return null;
+	}
+
+    /*********************************************
+     *                                            *
+     *               HASHFUNCTION                 *
+     *                                            *
+     **********************************************/
     private int m() {
         return networkXSize * getNetworkYSize;
     }
@@ -168,40 +226,5 @@ public class Client implements ClientInterface, ClientCommandInterface{
     private int hashY(String Docname, int i) {
         return (hashF(summe(Docname), i)) / networkXSize;
     }
-    /////////////////////////////////////////////////////////////
-
-	@Override
-	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
-		//TODO Implement me!
-
-        position = p;
-		return null;
-	}
-
-	@Override
-	public Iterable<Pair<Document, Position>> removeUnmanagedDocuments() {
-		//TODO Implement me!
-		return null;
-	}
-		
-	@Override
-	public void adaptNeighbours(ClientInterface joiningClient) {
-		//TODO Implement me!
-	}
-
-	@Override
-	public void addDocumentToNetwork(Document d) throws CANException {
-		//TODO Implement me!
-	}
-
-	@Override
-	public void removeDocumentFromNetwork(String documentName) {
-		//TODO Implement me!
-	}
-
-	@Override
-	public Document searchForDocument(String documentName) throws CANException {
-		//TODO Implement me!
-		return null;
-	}
+    /***********************************************/
 }
