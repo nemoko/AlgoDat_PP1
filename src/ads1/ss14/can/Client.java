@@ -6,7 +6,8 @@ import ads1.ss14.can.exceptions.NoSuchDocument;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+
+import static java.lang.Math.sqrt;
 
 public class Client implements ClientInterface, ClientCommandInterface{
 
@@ -119,45 +120,61 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	@Override
 	public ClientInterface searchForResponsibleClient(Position p) {
         //TODO Implement me!
-        // calculate Position using
-        // Hx(D.name,i), Hy(D.name,i) => p(x,y)
 
-        /*
-        Then search for the client responsible for p
-        C.area=[(x1,x2);(y1,y2)]
+        double x = p.getX();
+        double y = p.getY();
 
-        C.area.x1 < p.x < C.area.x2
-                    &&
-        C.area.y1 < p.y < C.area.y2
+        if((getArea().getLowerX() <= x && x < getArea().getUpperX())
+                                    &&
+           (getArea().getLowerY() <= y && y < getArea().getUpperY()))
+        {
+            return this;
+        }
+        else //ask a neighbour
+        {
+            double closestDist = 0.0;
+            Pair<ClientInterface,Double> closestNeighbour = new Pair<ClientInterface, Double>(this,closestDist);
 
-        //if the search lands in C, end
+            for(int i = 0; i < neighbourList.size(); i++)
+            {
+                ClientInterface cv = neighbourList.get(i);
 
-        //else
-        ask a neighbour with the shortest euklidian distance Q(C.area,p) between the area of the N and p-searchP
+                double rX = max(min(cv.getArea().getUpperX(),x),cv.getArea().getLowerX());
+                double rY = max(min(cv.getArea().getUpperY(),y),cv.getArea().getLowerY());
 
-        Q(N.area,p) =
-        r.x = max(min(C.area.x2,p.x),C.area.x1)
-        r.y = max(min(C.area.y2,p.y),C.area.y1)
+                double neighbourDistance = sqrt( (rX - x)*(rX - x) + (rY - y)*(rY - y) ); //Q
 
-        Q(C.area,p) = sqr( (r.x - p.x)^2 + (r.y - p.y)^2 )
+                Pair<ClientInterface,Double> neighbour = new Pair<ClientInterface, Double>(cv,neighbourDistance);
 
-            //if more clients with the same distance to p exist, choose the lowest lexicological ID(String.compareTo)
+                if(i == 0) //init the shortest path
+                    closestNeighbour.second = neighbour.second;
+                else
+                {
+                    if(closestNeighbour.second < neighbour.second) { //compare distances
+                        //do nothing
+                    }
+                    else if(closestNeighbour.second == neighbour.second) //compare names
+                    {
+                        closestNeighbour = lexiCompare(closestNeighbour,neighbour);
+                    }
+                    else
+                    {
+                        closestNeighbour = neighbour;
+                    }
+                }
+            }
+            //retrieve the client with the shortest distance
 
-        // if shit happens, i += 1;
-
-
-        */
-
-		return null;
+            return closestNeighbour.first;
+        }
 	}
 
 	@Override
 	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
 		//TODO implemented?
 
-        if(entryPoint == null) {
+        if(entryPoint == null)
             return this;
-        }
 
         Area entry = entryPoint.getArea();
         Pair<Area, Area> pair;
@@ -198,15 +215,28 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Document searchForDocument(String documentName) throws CANException {
+    //DID i ever check if this client has the doc?
 
-
-        for(int i = 0; i < neighbourList.size(); i++) {
+        for(int i = 0; i < m(); i++) {
             Position p = new Position(hashX(documentName,i),hashY(documentName,i));
 
             ClientInterface c = searchForResponsibleClient(p);
-        }
+           /*
 
-		//TODO Implement me!
+                // if shit happens, i += 1;
+
+            */
+
+
+            Document doc;
+
+            try {
+                doc = c.getDocument(documentName);
+                return doc;
+            } catch (NoSuchDocument ne) {
+                continue;
+            }
+        }
 		return null;
 	}
 
@@ -226,8 +256,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     private int summe(String name) {
         int summe = 0;
 
-        for(int x = 0; x < name.length(); x++) {
-            char c = name.charAt(x);
+        for(char c : name.toCharArray()) {
             summe += Character.valueOf(c) - Character.valueOf('a');
         }
         return summe;
@@ -242,7 +271,22 @@ public class Client implements ClientInterface, ClientCommandInterface{
     }
 
     private double hashY(String Docname, int i) {
-        return (hashF(summe(Docname), i)) / networkXSize;
+        return (hashF(summe(Docname), i)) / networkXSize; //not networkYsize?
     }
     /***********************************************/
+
+    private double min(double a, double b) {
+        return (a < b) ? a : b;
+    }
+
+    private double max(double a, double b) {
+        return (a > b) ? a : b;
+    }
+
+    private Pair<ClientInterface,Double> lexiCompare(Pair<ClientInterface,Double> a, Pair<ClientInterface,Double> b) {
+
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) < 0) return a;
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return b;
+        else return a; //should never happen, throw exception?
+    }
 }
