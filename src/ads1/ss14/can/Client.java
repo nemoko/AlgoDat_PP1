@@ -214,7 +214,73 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		
 	@Override
 	public void adaptNeighbours(ClientInterface joiningClient) {
-		//TODO Implement me!
+
+        //horizontal split
+        if(this.getArea().getUpperX() == joiningClient.getArea().getLowerX() &&
+           this.getArea().getLowerY() == joiningClient.getArea().getLowerY() &&
+           this.getArea().getUpperY() == joiningClient.getArea().getUpperY()) {
+
+           for(ClientInterface neighbor : neighbourList)
+           {
+               //upper neighbors
+               if (getArea().getUpperY() == neighbor.getArea().getLowerY()) {
+
+                   //neighbor belongs only to the joining client
+                   if(neighbor.getArea().getLowerX() >= joiningClient.getArea().getLowerX()) {
+                       joiningClient.addNeighbour(neighbor);
+                       neighbor.addNeighbour(joiningClient);
+                       neighbor.removeNeighbour(this.getUniqueID());
+                       this.removeNeighbour(neighbor.getUniqueID());
+                       continue;
+                   }
+
+                   //both share the neighbor
+                   if(neighbor.getArea().getLowerX() < joiningClient.getArea().getLowerX()) {
+                       joiningClient.addNeighbour(neighbor);
+                       neighbor.addNeighbour(joiningClient);
+                   }
+               }
+
+               //bottom neighbors
+               if(getArea().getLowerY() == neighbor.getArea().getUpperY()) {
+
+                    //neighbor belongs only to the joining client
+                    if(neighbor.getArea().getLowerX() >= joiningClient.getArea().getLowerX()) {
+                        joiningClient.addNeighbour(neighbor);
+                        neighbor.addNeighbour(joiningClient);
+                        neighbor.removeNeighbour(this.getUniqueID());
+                        this.removeNeighbour(neighbor.getUniqueID());
+                        continue;
+                    }
+
+                   //both share the neighbor
+                   if(neighbor.getArea().getLowerX() < joiningClient.getArea().getLowerX()) {
+                       joiningClient.addNeighbour(neighbor);
+                       neighbor.addNeighbour(joiningClient);
+                   }
+               }
+
+               //right side
+               if(neighbor.getArea().getLowerX() == joiningClient.getArea().getUpperX()) {
+                   joiningClient.addNeighbour(neighbor);
+                   this.removeNeighbour(neighbor.getUniqueID());
+               }
+
+           }
+           return;
+        }
+
+        //TODO Implement me!
+        //vertical split
+        if(this.getArea().getLowerX() == joiningClient.getArea().getLowerX() &&
+           this.getArea().getUpperY() == joiningClient.getArea().getLowerY() &&
+           this.getArea().getUpperX() == joiningClient.getArea().getUpperX()) {
+
+            for(ClientInterface neighbor : neighbourList)
+            {
+
+            }
+        }
 	}
 
 	@Override //STUFE 2
