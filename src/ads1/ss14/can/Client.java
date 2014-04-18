@@ -14,7 +14,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     private String uniqueID;
     private int networkXSize;
     private int getNetworkYSize;
-    private int maxNumberOfDocuments;
+    private int maxNumberOfDocuments = -1;
     private HashMap<String,Document> library;
     private Position position;
     private Area area;
@@ -51,8 +51,21 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Document getDocument(String documentName) throws NoSuchDocument {
-        if(library.containsKey(documentName))
-            return library.get(documentName);
+        //TODO fixed?
+        /*
+        * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
+        * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
+        * Sie koennen daher nicht einfach mit Brute Force alle Clients nach einem Dokument durchsuchen.
+        * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
+        * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
+        * */
+
+
+         //calculate document position using hash, if not owned by this or neighbours, route request ?
+         if(library.size() < maxNumberOfDocuments) {
+            if(library.containsKey(documentName))
+                return library.get(documentName);
+        }
 
         throw new NoSuchDocument();
 	}
@@ -81,7 +94,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	}
 
     public void setPosition(double lowerX, double upperX, double lowerY, double upperY) {
-        position = new Position((lowerX-upperX)/2,(lowerY-upperY)/2);
+        position = new Position((lowerX-upperX)/2,(lowerY-upperY)/2); //TODO WHY lower-upper
     }
 
 	@Override
@@ -117,7 +130,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
         }
 	}
 	
-	@Override
+	@Override //STUFE 1
 	public ClientInterface searchForResponsibleClient(Position p) {
         double x = p.getX();
         double y = p.getY();
@@ -169,6 +182,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	@Override
 	public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
 		//TODO implemented?
+        //identify which zone can be split, or does the entry point get split automatically?
 
         if(entryPoint == null)
             return this;
@@ -203,17 +217,18 @@ public class Client implements ClientInterface, ClientCommandInterface{
 		//TODO Implement me!
 	}
 
-	@Override
+	@Override //STUFE 2
 	public void addDocumentToNetwork(Document d) throws CANException {
 		//TODO Implement me!
+
 	}
 
-	@Override
+	@Override //STUFE 2
 	public void removeDocumentFromNetwork(String documentName) {
 		//TODO Implement me!
 	}
 
-	@Override
+	@Override //STUFE 1
 	public Document searchForDocument(String documentName) throws CANException {
 
         Document doc = null;
