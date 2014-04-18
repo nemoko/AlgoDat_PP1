@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="47aade1f-5dde-479d-a838-cb45326dfca1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" afterPath="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ads1/ss14/can/Main.java" afterPath="$PROJECT_DIR$/src/ads1/ss14/can/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PP.iws" />
@@ -93,13 +92,43 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="0000" pinned="false" current="false" current-in-tab="true">
+            <file leaf-file-name="0000" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/public_instances/0000">
-                <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+                <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
                   <state />
                 </provider>
+                <provider editor-type-id="text-editor">
+                  <state line="20" column="18" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1062">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="adaptNeighbours" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/cmp/adaptNeighbours">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="20" column="18" selection-start="571" selection-end="571" vertical-scroll-proportion="0.4774536" vertical-offset="0" max-vertical-offset="1062">
+                  <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1512">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="joinNetwork" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/cmp/joinNetwork">
+                <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+                  <state />
+                </provider>
+                <provider editor-type-id="text-editor">
+                  <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1332">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="searchForDocument" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/cmp/searchForDocument">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="23" column="26" selection-start="689" selection-end="689" vertical-scroll-proportion="0.5201005" vertical-offset="0" max-vertical-offset="1008">
                     <folding />
                   </state>
                 </provider>
@@ -119,7 +148,7 @@
       <file leaf-file-name="Client.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="0" selection-start="5198" selection-end="5198" vertical-scroll-proportion="-0.19074178" vertical-offset="3078" max-vertical-offset="5292">
+            <state line="162" column="13" selection-start="4948" selection-end="4948" vertical-scroll-proportion="0.20050977" vertical-offset="2338" max-vertical-offset="5274">
               <folding />
             </state>
           </provider>
@@ -147,8 +176,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" />
         <option value="$PROJECT_DIR$/src/ads1/ss14/can/Main.java" />
+        <option value="$PROJECT_DIR$/src/ads1/ss14/can/Client.java" />
       </list>
     </option>
   </component>
@@ -581,7 +610,7 @@
       <workItem from="1397827703598" duration="442000" />
       <workItem from="1397829946680" duration="433000" />
       <workItem from="1397834594333" duration="5702000" />
-      <workItem from="1397842124162" duration="1577000" />
+      <workItem from="1397842124162" duration="4276000" />
     </task>
     <task id="LOCAL-00001" summary="joinNetwork implemented">
       <created>1397768038820</created>
@@ -603,11 +632,15 @@
       <created>1397838916608</created>
       <updated>1397838916608</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="main overwritten">
+      <created>1397844199570</created>
+      <updated>1397844199570</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32747000" />
+    <option name="totallyTimeSpent" value="35446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="24" width="1200" height="1896" extended-state="6" />
@@ -626,18 +659,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967636" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967636" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21009326" sideWeight="0.305" order="14" side_tool="true" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33790454" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33790454" sideWeight="0.37916666" order="14" side_tool="true" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33790454" sideWeight="0.62083334" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -686,7 +719,8 @@
     <MESSAGE value="searchForDocument" />
     <MESSAGE value="searchForResponsibleClient v1" />
     <MESSAGE value="search algo v1&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="search algo v1&#10;" />
+    <MESSAGE value="main overwritten" />
+    <option name="LAST_COMMIT_MESSAGE" value="main overwritten" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -811,16 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_instances/0000">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="18" selection-start="571" selection-end="571" vertical-scroll-proportion="0.4774536" vertical-offset="0" max-vertical-offset="1062">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="121" column="7" selection-start="3889" selection-end="3889" vertical-scroll-proportion="0.5783603" vertical-offset="1141" max-vertical-offset="2934">
@@ -830,9 +854,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public_instances/0000">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="20" column="18" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1062">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmp/adaptNeighbours">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1512">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmp/joinNetwork">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1332">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmp/searchForDocument">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="26" selection-start="689" selection-end="689" vertical-scroll-proportion="0.5201005" vertical-offset="0" max-vertical-offset="1008">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="0" selection-start="5198" selection-end="5198" vertical-scroll-proportion="-0.19074178" vertical-offset="3078" max-vertical-offset="5292">
+        <state line="162" column="13" selection-start="4948" selection-end="4948" vertical-scroll-proportion="0.20050977" vertical-offset="2338" max-vertical-offset="5274">
           <folding />
         </state>
       </provider>

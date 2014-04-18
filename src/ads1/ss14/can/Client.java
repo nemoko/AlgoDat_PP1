@@ -189,7 +189,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
         //move docs
 
         /* END */
-
 		return entryPoint; //TODO return the input???? i think so
 	}
 
