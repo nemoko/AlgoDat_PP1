@@ -119,8 +119,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	
 	@Override
 	public ClientInterface searchForResponsibleClient(Position p) {
-        //TODO Implement me!
-
         double x = p.getX();
         double y = p.getY();
 
@@ -164,7 +162,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 }
             }
             //retrieve the client with the shortest distance
-
             return closestNeighbour.first;
         }
 	}
@@ -187,9 +184,13 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         this.setArea(pair.first);
         entryPoint.setArea(pair.second);
+
+        //adapt neighbours
+        //move docs
+
         /* END */
 
-		return entryPoint; //return the input???? i think so
+		return entryPoint; //TODO return the input???? i think so
 	}
 
 	@Override
@@ -215,29 +216,33 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 	@Override
 	public Document searchForDocument(String documentName) throws CANException {
-    //DID i ever check if this client has the doc?
+
+        Document doc = null;
 
         for(int i = 0; i < m(); i++) {
             Position p = new Position(hashX(documentName,i),hashY(documentName,i));
 
             ClientInterface c = searchForResponsibleClient(p);
-           /*
-
-                // if shit happens, i += 1;
-
-            */
-
-
-            Document doc;
 
             try {
                 doc = c.getDocument(documentName);
                 return doc;
             } catch (NoSuchDocument ne) {
-                continue;
+
+                //ask neighbours?
+                for(ClientInterface ci : neighbourList) {
+                    ci.searchForResponsibleClient(p);
+                }
+
+
+                //if no neighbours are responsible for p
+                //c asks neighbour c with the shortest distance between neighbour and p
+
+                continue; //i += 1:
+
             }
         }
-		return null;
+        return doc; //null
 	}
 
     /**********************************************
@@ -287,6 +292,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) < 0) return a;
         if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return b;
-        else return a; //should never happen, throw exception?
+        else return a; //TODO should never happen, throw exception?
     }
 }
