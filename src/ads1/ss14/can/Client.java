@@ -128,7 +128,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
         {
             return this;
         }
-        else //ask a neighbour
+        else //find closest neighbour
         {
             double closestDist = 0.0;
             Pair<ClientInterface,Double> closestNeighbour = new Pair<ClientInterface, Double>(this,closestDist);
@@ -219,27 +219,37 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         Document doc = null;
 
-        for(int i = 0; i < m(); i++) {
+        for(int i = 0; i < m(); i++) { //calculate position
             Position p = new Position(hashX(documentName,i),hashY(documentName,i));
 
-            ClientInterface c = searchForResponsibleClient(p);
+            ClientInterface c = searchForResponsibleClient(p); //search for the client responsible for the position
 
-            try {
+            try { //search for the responsible client
                 doc = c.getDocument(documentName);
                 return doc;
-            } catch (NoSuchDocument ne) {
+            } catch (NoSuchDocument ne) { //if fails
 
-                //ask neighbours?
+                //ask neighbours
                 for(ClientInterface ci : neighbourList) {
-                    ci.searchForResponsibleClient(p);
+                    try {
+                        doc = ci.getDocument(documentName);
+                        return doc;
+                    } catch (NoSuchDocument nec) {
+                        continue;
+                    }
                 }
 
-
                 //if no neighbours are responsible for p
-                //c asks neighbour c with the shortest distance between neighbour and p
+                //ask neighbour with the shortest distance between itself and the calculated position
+                c = c.searchForResponsibleClient(p);
 
-                continue; //i += 1:
-
+                try {
+                    doc = c.getDocument(documentName);
+                    return doc;
+                } catch (NoSuchDocument ned) {
+                    continue;
+                }
+                //i += 1:
             }
         }
         return doc; //null
