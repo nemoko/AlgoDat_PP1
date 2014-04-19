@@ -215,10 +215,20 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	@Override
 	public void adaptNeighbours(ClientInterface joiningClient) {
 
-        //horizontal split
-        if(this.getArea().getUpperX() == joiningClient.getArea().getLowerX() &&
-           this.getArea().getLowerY() == joiningClient.getArea().getLowerY() &&
-           this.getArea().getUpperY() == joiningClient.getArea().getUpperY()) {
+        //and this as a neighbour to the joining client, and the other way around
+        this.addNeighbour(joiningClient);
+        joiningClient.addNeighbour(this);
+
+
+        /***********************
+        *          |           *
+        *          | {joining} *
+        *          | {client}  *
+        *          |           *
+        *          |           *
+        ************************/
+        //vertical split
+        if(this.getArea().getUpperX() == joiningClient.getArea().getLowerX()) {
 
            for(ClientInterface neighbor : neighbourList)
            {
@@ -270,15 +280,66 @@ public class Client implements ClientInterface, ClientCommandInterface{
            return;
         }
 
+        /*********************
+        *  {joining client}  *
+        *                    *
+        *--------------------*
+        *                    *
+        *                    *
+        **********************/
         //TODO Implement me!
-        //vertical split
-        if(this.getArea().getLowerX() == joiningClient.getArea().getLowerX() &&
-           this.getArea().getUpperY() == joiningClient.getArea().getLowerY() &&
-           this.getArea().getUpperX() == joiningClient.getArea().getUpperX()) {
+        if(this.getArea().getUpperY() == joiningClient.getArea().getLowerY()) {
 
             for(ClientInterface neighbor : neighbourList)
             {
+                //left side
+                if(joiningClient.getArea().getLowerX() == neighbor.getArea().getUpperX()) {
 
+                    //share the neighbor
+                    if(joiningClient.getArea().getLowerY() > neighbor.getArea().getLowerY()) {
+                        joiningClient.addNeighbour(neighbor);
+                        neighbor.addNeighbour(joiningClient);
+                        continue;
+                    }
+
+                    //neighbor belongs to joining client only
+                    if(joiningClient.getArea().getLowerY() <= neighbor.getArea().getLowerY()) {
+                        joiningClient.addNeighbour(neighbor);
+                        neighbor.addNeighbour(joiningClient);
+                        neighbor.removeNeighbour(this.getUniqueID());
+                        this.removeNeighbour(neighbor.getUniqueID());
+                    }
+                }
+
+                //right side
+                if(joiningClient.getArea().getUpperX() == neighbor.getArea().getLowerX()) {
+
+                    //share the neighbor
+                    if(joiningClient.getArea().getLowerY() > neighbor.getArea().getLowerY()) {
+                        joiningClient.addNeighbour(neighbor);
+                        neighbor.addNeighbour(joiningClient);
+                        continue;
+                    }
+
+                    //neighbor belongs to the joining client only
+                    if(joiningClient.getArea().getLowerX() <= neighbor.getArea().getLowerY()) {
+                        joiningClient.addNeighbour(neighbor);
+                        neighbor.addNeighbour(joiningClient);
+                        neighbor.removeNeighbour(this.getUniqueID());
+                        this.removeNeighbour(neighbor.getUniqueID());
+                    }
+                }
+
+                //top side
+                if(joiningClient.getArea().getUpperY() == neighbor.getArea().getLowerY()) {
+                    //belongs to joining client only
+                    joiningClient.addNeighbour(neighbor);
+                    neighbor.addNeighbour(joiningClient);
+                    neighbor.removeNeighbour(this.getUniqueID());
+                    this.removeNeighbour(neighbor.getUniqueID());
+                }
+
+                //bottom stays, nothing to do
             }
         }
 	}
@@ -327,9 +388,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
                     doc = c.getDocument(documentName);
                     return doc;
                 } catch (NoSuchDocument ned) {
-                    continue;
+                    continue; //i += 1:
                 }
-                //i += 1:
             }
         }
         return doc; //null
