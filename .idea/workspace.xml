@@ -87,7 +87,7 @@
       <file leaf-file-name="Client.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="0" selection-start="6990" selection-end="6990" vertical-scroll-proportion="0.17679866" vertical-offset="3319" max-vertical-offset="7812">
+            <state line="282" column="19" selection-start="9543" selection-end="9543" vertical-scroll-proportion="0.7791411" vertical-offset="3337" max-vertical-offset="8190">
               <folding>
                 <element signature="e#4485#4510#0" expanded="true" />
                 <element signature="e#5006#5031#0" expanded="true" />
@@ -570,7 +570,7 @@
       <workItem from="1397842124162" duration="8838000" />
       <workItem from="1397856904756" duration="6477000" />
       <workItem from="1397900569392" duration="2888000" />
-      <workItem from="1397908297691" duration="5606000" />
+      <workItem from="1397908297691" duration="9148000" />
     </task>
     <task id="LOCAL-00001" summary="joinNetwork implemented">
       <created>1397768038820</created>
@@ -608,11 +608,15 @@
       <created>1397862637076</created>
       <updated>1397862637076</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="#horizontalSplit implemented&#10;">
+      <created>1397919669402</created>
+      <updated>1397919669402</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54979000" />
+    <option name="totallyTimeSpent" value="58521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="37" width="1200" height="1896" extended-state="6" />
@@ -631,6 +635,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967636" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967636" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -642,7 +647,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967636" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -695,7 +699,8 @@
     <MESSAGE value="client overhaul" />
     <MESSAGE value="getdocu&#10;" />
     <MESSAGE value="adaptNeighbours #horizontalSplit&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="adaptNeighbours #horizontalSplit&#10;" />
+    <MESSAGE value="#horizontalSplit implemented&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="#horizontalSplit implemented&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -961,7 +966,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="0" selection-start="6990" selection-end="6990" vertical-scroll-proportion="0.17679866" vertical-offset="3319" max-vertical-offset="7812">
+        <state line="282" column="19" selection-start="9543" selection-end="9543" vertical-scroll-proportion="0.7791411" vertical-offset="3337" max-vertical-offset="8190">
           <folding>
             <element signature="e#4485#4510#0" expanded="true" />
             <element signature="e#5006#5031#0" expanded="true" />
