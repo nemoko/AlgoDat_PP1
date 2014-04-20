@@ -91,7 +91,7 @@ public class Main {
             printDebug(registry.dumpCANStructure());
             bailOut(e.toString());
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             bailOut("An unspecified error occurred");
         }
 
