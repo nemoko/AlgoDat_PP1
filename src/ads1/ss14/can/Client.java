@@ -6,7 +6,9 @@ import ads1.ss14.can.exceptions.NoSuchDocument;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
+import static java.lang.Math.nextAfter;
 import static java.lang.Math.sqrt;
 
 public class Client implements ClientInterface, ClientCommandInterface{
@@ -199,58 +201,29 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 this.setArea(pair.first);
                 entryPoint.setArea(pair.second);
             }
-        /* END of SPLI */
+        /* END of SPLIT */
 
             adaptNeighbours(entryPoint);
-            //TODO move docs
+            //TODO REASSIGN DOCS
 
         }
         else // if this client isnt responsible for P
         {
             return joinNetwork(this.searchForResponsibleClient(p),p); //TODO i dont even know anymore
         }
-
-        ////////////////////////////////////////////////
-
-
-
-
-        //search for the Client responsible for p, to split his zone
-        //then return
-
-
-        //TODO implement
-        //if P entry is here, continue
-
-        Area entry = entryPoint.getArea();
-        Pair<Area, Area> pair;
-
-        /* SPLITTING AREA */
-        if(entry.getUpperY()-entry.getLowerY() > entry.getUpperX() - entry.getLowerX())
-        {
-            pair = entry.splitHorizontally();
-            this.setArea(pair.second);
-            entryPoint.setArea(pair.first);
-        }
-        else
-        {
-            pair = entry.splitVertically();
-            this.setArea(pair.first);
-            entryPoint.setArea(pair.second);
-        }
-
-        //TODO implement
-        //adapt neighbours
-        //move docs
-
-        /* END */
-        return entryPoint; //TODO return the input???? i think so
+        return entryPoint;
     }
 
     @Override
     public Iterable<Pair<Document, Position>> removeUnmanagedDocuments() {
-        //TODO Implement me!
-        return null;
+
+        LinkedList<Pair<Document,Position>> removeDocs = new LinkedList<Pair<Document, Position>>();
+
+        for(String doc : library.keySet()) {
+            if(!getArea().contains(library.get(doc).second))
+                removeDocs.add(library.get(doc));
+        }
+        return removeDocs;
     }
 
     @Override
@@ -321,7 +294,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
                     this.removeNeighbour(neighbor.getUniqueID());
                     neighbor.removeNeighbour(this.getUniqueID());
                 }
-
             }
             return;
         }
@@ -333,7 +305,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
          *  {joining client}  *
          *                    *
          **********************/
-        //TODO Implement me!
         if(this.getArea().getLowerY() == joiningClient.getArea().getUpperY()) {
 
             for(ClientInterface neighbor : neighbourList)
@@ -411,8 +382,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         Document doc = null;
 
-        for(int i = 0; i < m(); i++) { //calculate position
-            Position p = new Position(hashX(documentName,i),hashY(documentName,i));
+        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+            Position p = hashDocument(documentName,i); //calculate position
 
             ClientInterface c = searchForResponsibleClient(p); //search for the client responsible for the position
 
@@ -420,67 +391,31 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 doc = c.getDocument(documentName);
                 return doc;
             } catch (NoSuchDocument ne) { //if fails
-
-                //ask neighbours
-                for(ClientInterface ci : neighbourList) {
-                    try {
-                        doc = ci.getDocument(documentName);
-                        return doc;
-                    } catch (NoSuchDocument nec) {
-                        continue;
-                    }
-                }
-
-                //if no neighbours are responsible for p
-                //ask neighbour with the shortest distance between itself and the calculated position
-                c = c.searchForResponsibleClient(p);
-
-                try {
-                    doc = c.getDocument(documentName);
-                    return doc;
-                } catch (NoSuchDocument ned) {
-                    continue; //i += 1:
-                }
+                continue;
             }
         }
         return doc; //null
     }
 
-    /**********************************************
-     *                                            *
-     *               HASHFUNCTION                 *
-     *                                            *
-     **********************************************/
+    public Position hashDocument(String doc, int i) {
+        double m = (networkXSize * getNetworkYSize);
 
-    private double m() {
-        return (area.getUpperX() - area.getLowerX()) * (area.getUpperY() - area.getLowerY());
-    }
+        double summe = 0;
 
-    private double rFunc(int summe, int i) {
-        return i * (( 2 * ( summe % (m()-2))) +1);
-    }
-
-    private int summe(String name) {
-        int summe = 0;
-
-        for(char c : name.toCharArray()) {
+        for(char c : doc.toCharArray()) {
             summe += Character.valueOf(c) - Character.valueOf('a');
         }
-        return summe;
-    }
 
-    private double hashF(int summe, int i) {
-        return ((summe % m()) + rFunc(summe,i)) % m();
-    }
+        double rFunc = i * (( 2 * ( summe % (m-2))) +1);
 
-    private double hashX(String Docname, int i) {
-        return hashF(summe(Docname), i) % networkXSize;
-    }
+        double hashFunc = ((summe % m) + rFunc) % m;
 
-    private double hashY(String Docname, int i) {
-        return (hashF(summe(Docname), i)) / networkXSize;
+        double hashX = hashFunc % networkXSize;
+
+        double hashY = hashFunc / networkXSize;
+
+        return new Position(hashX,hashY);
     }
-    /***********************************************/
 
     private double min(double a, double b) {
         return (a < b) ? a : b;
