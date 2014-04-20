@@ -86,9 +86,13 @@ public class Main {
                 System.out.println(registry.dumpCANStructure(true));
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
             bailOut("The provided input files does not exist");
         } catch (CANException e) {
             printDebug(registry.dumpCANStructure());
+            e.printStackTrace();
+
             bailOut(e.toString());
         } catch (Exception e) {
             e.printStackTrace();

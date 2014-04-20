@@ -317,7 +317,9 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 //right side
                 if(joiningClient.getArea().getUpperX() == neighbor.getArea().getLowerX()) {
                     joiningClient.addNeighbour(neighbor);
+                    neighbor.addNeighbour(joiningClient);
                     this.removeNeighbour(neighbor.getUniqueID());
+                    neighbor.removeNeighbour(this.getUniqueID());
                 }
 
             }
@@ -449,6 +451,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
      *               HASHFUNCTION                 *
      *                                            *
      **********************************************/
+
     private double m() {
         return (area.getUpperX() - area.getLowerX()) * (area.getUpperY() - area.getLowerY());
     }
@@ -489,8 +492,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     private Pair<ClientInterface,Double> lexiCompare(Pair<ClientInterface,Double> a, Pair<ClientInterface,Double> b) {
 
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return a;
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) < 0) return b;
-        else return a; //TODO should never happen, throw exception?
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) < 0) return a;
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return b;
+        else return null; //TODO should never happen, throw exception?
     }
 }
