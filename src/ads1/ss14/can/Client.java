@@ -62,22 +62,21 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
 
          //calculate document position using hash, if not owned by this or neighbours, route request ?
-         if(library.size() < maxNumberOfDocuments) {
+        //if(library.size() < maxNumberOfDocuments)
             if(library.containsKey(documentName))
                 return library.get(documentName);
-        }
+
 
         throw new NoSuchDocument();
 	}
 
 	@Override
 	public void storeDocument(Document d, Position p) throws NoAdditionalStorageAvailable, CANException {
-        //TODO position provided only for checking?
-		if(library.size() != maxNumberOfDocuments) {
-            if(position.equals(p)) {
+        //TODO why am i getting the position here
+		if(library.size() < maxNumberOfDocuments)
                 library.put(d.getName(),d);
-            } else throw new CANException("wrong location");
-        } else throw new NoAdditionalStorageAvailable();
+
+        throw new NoAdditionalStorageAvailable();
 	}
 
 	@Override
@@ -94,7 +93,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	}
 
     public void setPosition(double lowerX, double upperX, double lowerY, double upperY) {
-        position = new Position((lowerX-upperX)/2,(lowerY-upperY)/2); //TODO WHY lower-upper
+        position = new Position((upperX-lowerX)/2,(upperY-lowerY)/2); //TODO not according to the assignement
     }
 
 	@Override
@@ -132,51 +131,45 @@ public class Client implements ClientInterface, ClientCommandInterface{
 	
 	@Override //STUFE 1
 	public ClientInterface searchForResponsibleClient(Position p) {
-        double x = p.getX();
-        double y = p.getY();
-
-        if((getArea().getLowerX() <= x && x < getArea().getUpperX())
-                                    &&
-           (getArea().getLowerY() <= y && y < getArea().getUpperY()))
-        {
+        if(this.getArea().contains(p)) {
             return this;
         }
-        else //find closest neighbour
-        {
-            double closestDist = 0.0;
-            Pair<ClientInterface,Double> closestNeighbour = new Pair<ClientInterface, Double>(this,closestDist);
 
-            for(int i = 0; i < neighbourList.size(); i++)
-            {
-                ClientInterface cv = neighbourList.get(i);
-
-                double rX = max(min(cv.getArea().getUpperX(),x),cv.getArea().getLowerX());
-                double rY = max(min(cv.getArea().getUpperY(),y),cv.getArea().getLowerY());
-
-                double neighbourDistance = sqrt( (rX - x)*(rX - x) + (rY - y)*(rY - y) ); //Q
-
-                Pair<ClientInterface,Double> neighbour = new Pair<ClientInterface, Double>(cv,neighbourDistance);
-
-                if(i == 0) //init the shortest path
-                    closestNeighbour.second = neighbour.second;
-                else
-                {
-                    if(closestNeighbour.second < neighbour.second) { //compare distances
-                        //do nothing
-                    }
-                    else if(closestNeighbour.second == neighbour.second) //compare names
-                    {
-                        closestNeighbour = lexiCompare(closestNeighbour,neighbour);
-                    }
-                    else
-                    {
-                        closestNeighbour = neighbour;
-                    }
-                }
-            }
-            //retrieve the client with the shortest distance
-            return closestNeighbour.first;
+        //search all neighbors
+        for(ClientInterface n : neighbourList) {
+            if(n.getArea().contains(p))
+                return n;
         }
+
+        //find closest path to P via closest neighbor to P
+        double closestDist = Double.MAX_VALUE;
+        Pair<ClientInterface,Double> closestNeighbour = new Pair<ClientInterface, Double>(this,closestDist);
+
+        int i = 0;
+        for(; i < neighbourList.size(); i++) {
+            ClientInterface cv = neighbourList.get(i);
+
+            double rX = max(min(cv.getArea().getUpperX(),p.getX()),cv.getArea().getLowerX());
+            double rY = max(min(cv.getArea().getUpperY(),p.getY()),cv.getArea().getLowerY());
+            double neighbourDistance = sqrt( (rX - p.getX())*(rX - p.getX()) + (rY - p.getY())*(rY - p.getY()) ); //Q
+
+            Pair<ClientInterface,Double> neighbour = new Pair<ClientInterface, Double>(cv,neighbourDistance);
+
+            if(closestNeighbour.second < neighbour.second) { //compare distances
+                //do nothing
+            }
+            else if(closestNeighbour.second == neighbour.second) //compare names
+            {
+                closestNeighbour = lexiCompare(closestNeighbour,neighbour);
+            }
+            else
+            {
+                closestNeighbour = neighbour;
+            }
+        }
+        //retrieve the client with the shortest distance
+        return neighbourList.get(i).searchForResponsibleClient(p);
+
 	}
 
 	@Override
@@ -447,7 +440,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     }
 
     private double hashY(String Docname, int i) {
-        return (hashF(summe(Docname), i)) / networkXSize; //not networkYsize?
+        return (hashF(summe(Docname), i)) / networkXSize;
     }
     /***********************************************/
 
