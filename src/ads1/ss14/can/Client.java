@@ -368,13 +368,35 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     @Override //STUFE 2
     public void addDocumentToNetwork(Document d) throws CANException {
-        //TODO Implement me!
 
+        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+
+            Position p = hashDocument(d.getName(),i);
+            ClientInterface c = searchForResponsibleClient(p);
+
+            try {
+                c.storeDocument(d,p);
+            }
+            catch (NoAdditionalStorageAvailable e) {
+                continue;
+            }
+        }
     }
 
     @Override //STUFE 2
     public void removeDocumentFromNetwork(String documentName) {
-        //TODO Implement me!
+
+        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+
+            Position p = hashDocument(documentName,i);
+            ClientInterface c = searchForResponsibleClient(p);
+
+            try {
+                c.deleteDocument(documentName);
+            } catch (NoSuchDocument e) {
+                continue;
+            }
+        }
     }
 
     @Override //STUFE 1
