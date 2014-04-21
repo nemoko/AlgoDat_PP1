@@ -412,7 +412,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
             try { //search for the responsible client
                 doc = c.getDocument(documentName);
                 return doc;
-            } catch (NoSuchDocument ne) { //if fails
+            } catch (NoSuchDocument ne) {
                 continue;
             }
         }
@@ -449,8 +449,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     private Pair<ClientInterface,Double> lexiCompare(Pair<ClientInterface,Double> a, Pair<ClientInterface,Double> b) {
 
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) < 0) return a;
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return b;
-        else return null; //TODO should never happen, throw exception?
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return a;
+        else return b;
     }
 }
