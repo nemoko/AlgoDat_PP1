@@ -176,7 +176,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
         return neighbourList.get(index).searchForResponsibleClient(p);
     }
 
-    @Override
+    @Override //TODO remake this method to search for a responsible client first
     public ClientInterface joinNetwork(ClientInterface entryPoint, Position p) throws CANException {
 
         //if this is the first client in the network
@@ -204,14 +204,18 @@ public class Client implements ClientInterface, ClientCommandInterface{
         /* END of SPLIT */
 
             adaptNeighbours(entryPoint);
-            //TODO REASSIGN DOCS
 
+            //reassign documents {keep original max documents}
+            for(Pair<Document,Position> docPair : this.removeUnmanagedDocuments()) {
+                entryPoint.storeDocument(docPair.first,docPair.second);
+                this.deleteDocument(docPair.first.getName());
+            }
         }
         else // if this client isnt responsible for P
         {
             return joinNetwork(this.searchForResponsibleClient(p),p); //TODO i dont even know anymore
         }
-        return entryPoint;
+        return this; //TODO check this
     }
 
     @Override
