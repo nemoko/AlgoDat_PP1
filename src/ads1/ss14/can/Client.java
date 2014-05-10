@@ -96,7 +96,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     }
 
     public void setPosition(double lowerX, double upperX, double lowerY, double upperY) {
-        position = new Position((upperX-lowerX)/2,(upperY-lowerY)/2); //TODO not according to the assignement
+        position = new Position(lowerX + (upperX-lowerX)/2,lowerY + (upperY-lowerY)/2);
     }
 
     @Override
@@ -189,17 +189,17 @@ public class Client implements ClientInterface, ClientCommandInterface{
             Pair<Area, Area> pair;
 
         /* SPLITTING AREA */
-            if(entry.getUpperY()-entry.getLowerY() > entry.getUpperX() - entry.getLowerX())
-            {
-                pair = entry.splitHorizontally();
-                this.setArea(pair.second);
-                entryPoint.setArea(pair.first);
-            }
-            else
+            if(entry.getLowerX() - entry.getUpperX() >= entry.getLowerY() - entry.getUpperY())
             {
                 pair = entry.splitVertically();
                 this.setArea(pair.first);
                 entryPoint.setArea(pair.second);
+            }
+            else
+            {
+                pair = entry.splitHorizontally();
+                this.setArea(pair.second);
+                entryPoint.setArea(pair.first);
             }
         /* END of SPLIT */
 
@@ -453,7 +453,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     private Pair<ClientInterface,Double> lexiCompare(Pair<ClientInterface,Double> a, Pair<ClientInterface,Double> b) {
 
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return a;
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) >= 0) return a;
         else return b;
     }
 }
