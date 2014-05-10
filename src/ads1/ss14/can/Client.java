@@ -152,19 +152,22 @@ public class Client implements ClientInterface, ClientCommandInterface{
         for(int i = 0; i < neighbourList.size(); i++) {
             ClientInterface cv = neighbourList.get(i);
 
-            double rX = max(min(cv.getArea().getUpperX(),p.getX()),cv.getArea().getLowerX());
-            double rY = max(min(cv.getArea().getUpperY(),p.getY()),cv.getArea().getLowerY());
+            double rX = max( min( cv.getArea().getUpperX(),p.getX() ), cv.getArea().getLowerX());
+            double rY = max( min( cv.getArea().getUpperY(),p.getY() ), cv.getArea().getLowerY());
+
             double neighbourDistance = sqrt( (rX - p.getX())*(rX - p.getX()) + (rY - p.getY())*(rY - p.getY()) ); //Q
 
             Pair<ClientInterface,Double> neighbour = new Pair<ClientInterface, Double>(cv,neighbourDistance);
 
-            if(closestNeighbour.second < neighbour.second) { //compare distances
+            if(closestNeighbour.second.compareTo(neighbour.second) < 0) { //compare distances
                 //do nothing
             }
-            else if(closestNeighbour.second == neighbour.second) //compare names
+            else if(closestNeighbour.second.compareTo(neighbour.second) == 0) //compare names
             {
+                if(lexiCompare(closestNeighbour,neighbour).equals(neighbour)) {
+                    index = i;
+                }
                 closestNeighbour = lexiCompare(closestNeighbour,neighbour);
-                index = i;
             }
             else
             {
@@ -438,7 +441,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         double hashX = hashFunc % networkXSize;
 
-        double hashY = hashFunc / networkXSize;
+        double hashY = Math.floor(hashFunc / networkXSize);
 
         return new Position(hashX,hashY);
     }
@@ -453,7 +456,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     private Pair<ClientInterface,Double> lexiCompare(Pair<ClientInterface,Double> a, Pair<ClientInterface,Double> b) {
 
-        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) >= 0) return a;
+        if(a.first.getUniqueID().compareTo(b.first.getUniqueID()) > 0) return a;
         else return b;
     }
 }
