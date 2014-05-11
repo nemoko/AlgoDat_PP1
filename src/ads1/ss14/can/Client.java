@@ -53,7 +53,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     @Override
     public Document getDocument(String documentName) throws NoSuchDocument {
-        //TODO fixed?
         /*
         * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
         * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
@@ -61,7 +60,6 @@ public class Client implements ClientInterface, ClientCommandInterface{
         * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
         * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
         * */
-
 
         //calculate document position using hash, if not owned by this or neighbours, route request ?
         //if(library.size() < maxNumberOfDocuments)
@@ -84,6 +82,8 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     @Override
     public void deleteDocument(String documentName) throws NoSuchDocument {
+        System.out.println("DELETE DOCUMENT"); //TODO DEBUGGING
+
         if(library.containsKey(documentName))
             library.remove(documentName);
 
