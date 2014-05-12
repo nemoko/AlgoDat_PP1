@@ -51,21 +51,17 @@ public class Client implements ClientInterface, ClientCommandInterface{
         return maxNumberOfDocuments;
     }
 
+    /**
+    * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
+    * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
+    * Sie koennen daher nicht einfach mit Brute Force alle Clients nach einem Dokument durchsuchen.
+    * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
+    * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
+    * */
     @Override
     public Document getDocument(String documentName) throws NoSuchDocument {
-        /*
-        * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
-        * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
-        * Sie koennen daher nicht einfach mit Brute Force alle Clients nach einem Dokument durchsuchen.
-        * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
-        * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
-        * */
-
-        //calculate document position using hash, if not owned by this or neighbours, route request ?
-        //if(library.size() < maxNumberOfDocuments)
         if(library.containsKey(documentName))
             return library.get(documentName).first;
-
 
         throw new NoSuchDocument();
     }
@@ -82,12 +78,21 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     @Override
     public void deleteDocument(String documentName) throws NoSuchDocument {
-        System.out.println("DELETE DOCUMENT"); //TODO DEBUGGING
 
-        if(library.containsKey(documentName))
+        if(library.containsKey(documentName)) {
             library.remove(documentName);
+            return;
+        } else {
+            for(int i = 0; i < networkXSize * getNetworkYSize; i++) {
+                Client client = (Client) searchForResponsibleClient(hashDocument(documentName,i));
 
-        throw new NoSuchDocument();
+                if(client.library.containsKey(documentName)) {
+                    client.deleteDocument(documentName);
+                    return;
+                }
+            }
+            throw new NoSuchDocument();
+        }
     }
 
     @Override
@@ -216,14 +221,13 @@ public class Client implements ClientInterface, ClientCommandInterface{
         }
         else // if this client isnt responsible for P
         {
-            return joinNetwork(this.searchForResponsibleClient(p),p); //TODO i dont even know anymore
+            joinNetwork(this.searchForResponsibleClient(p),p);
         }
         return this; //TODO check this
     }
 
     @Override
     public Iterable<Pair<Document, Position>> removeUnmanagedDocuments() {
-
         LinkedList<Pair<Document,Position>> removeDocs = new LinkedList<Pair<Document, Position>>();
 
         for(String doc : library.keySet()) {
@@ -383,6 +387,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
             try {
                 c.storeDocument(d,p);
+                return;
             }
             catch (NoAdditionalStorageAvailable e) {
                 continue;
