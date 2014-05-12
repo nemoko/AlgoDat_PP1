@@ -62,15 +62,15 @@
       <file leaf-file-name="Client.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.3212493" vertical-offset="2862" max-vertical-offset="8118">
-              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33295518" vertical-offset="6271" max-vertical-offset="8118">
+              <caret line="404" column="26" selection-start-line="404" selection-start-column="16" selection-end-line="404" selection-end-column="26" />
               <folding>
-                <element signature="e#622#656#0" expanded="true" />
-                <element signature="e#782#799#0" expanded="true" />
-                <element signature="e#2525#2545#0" expanded="true" />
-                <element signature="e#4923#4948#0" expanded="true" />
-                <element signature="e#5481#5506#0" expanded="true" />
-                <element signature="e#7958#7984#0" expanded="true" />
+                <element signature="e#619#653#0" expanded="true" />
+                <element signature="e#779#796#0" expanded="true" />
+                <element signature="e#2519#2539#0" expanded="true" />
+                <element signature="e#4914#4939#0" expanded="true" />
+                <element signature="e#5472#5497#0" expanded="true" />
+                <element signature="e#7949#7975#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -696,17 +696,21 @@
       <workItem from="1399828614654" duration="504000" />
       <workItem from="1399829621190" duration="6515000" />
       <workItem from="1399863683759" duration="3277000" />
-      <workItem from="1399887831214" duration="10899000" />
+      <workItem from="1399887831214" duration="11172000" />
     </task>
     <task id="LOCAL-00001" summary="0005 fixed">
       <created>1399866940649</created>
       <updated>1399866940649</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed joining client perspective">
+      <created>1399898758951</created>
+      <updated>1399898758951</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21195000" />
+    <option name="totallyTimeSpent" value="21468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1599" y="-4" width="1202" height="1925" extended-state="6" />
@@ -756,7 +760,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="0005 fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="0005 fixed" />
+    <MESSAGE value="fixed joining client perspective" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed joining client perspective" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,12 +778,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8496">
           <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
           <folding>
-            <element signature="e#622#656#0" expanded="true" />
-            <element signature="e#782#799#0" expanded="true" />
-            <element signature="e#2525#2545#0" expanded="true" />
-            <element signature="e#4923#4948#0" expanded="true" />
-            <element signature="e#5481#5506#0" expanded="true" />
-            <element signature="e#7958#7984#0" expanded="true" />
+            <element signature="e#619#653#0" expanded="true" />
+            <element signature="e#779#796#0" expanded="true" />
+            <element signature="e#2519#2539#0" expanded="true" />
+            <element signature="e#4914#4939#0" expanded="true" />
+            <element signature="e#5472#5497#0" expanded="true" />
+            <element signature="e#7949#7975#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -812,12 +817,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7848">
           <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
           <folding>
-            <element signature="e#622#656#0" expanded="true" />
-            <element signature="e#782#799#0" expanded="true" />
-            <element signature="e#2525#2545#0" expanded="true" />
-            <element signature="e#4923#4948#0" expanded="true" />
-            <element signature="e#5481#5506#0" expanded="true" />
-            <element signature="e#7958#7984#0" expanded="true" />
+            <element signature="e#619#653#0" expanded="true" />
+            <element signature="e#779#796#0" expanded="true" />
+            <element signature="e#2519#2539#0" expanded="true" />
+            <element signature="e#4914#4939#0" expanded="true" />
+            <element signature="e#5472#5497#0" expanded="true" />
+            <element signature="e#7949#7975#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -827,12 +832,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7884">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#622#656#0" expanded="true" />
-            <element signature="e#782#799#0" expanded="true" />
-            <element signature="e#2525#2545#0" expanded="true" />
-            <element signature="e#4923#4948#0" expanded="true" />
-            <element signature="e#5481#5506#0" expanded="true" />
-            <element signature="e#7958#7984#0" expanded="true" />
+            <element signature="e#619#653#0" expanded="true" />
+            <element signature="e#779#796#0" expanded="true" />
+            <element signature="e#2519#2539#0" expanded="true" />
+            <element signature="e#4914#4939#0" expanded="true" />
+            <element signature="e#5472#5497#0" expanded="true" />
+            <element signature="e#7949#7975#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -911,15 +916,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ads1/ss14/can/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3212493" vertical-offset="2862" max-vertical-offset="8118">
-          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33295518" vertical-offset="6271" max-vertical-offset="8118">
+          <caret line="404" column="26" selection-start-line="404" selection-start-column="16" selection-end-line="404" selection-end-column="26" />
           <folding>
-            <element signature="e#622#656#0" expanded="true" />
-            <element signature="e#782#799#0" expanded="true" />
-            <element signature="e#2525#2545#0" expanded="true" />
-            <element signature="e#4923#4948#0" expanded="true" />
-            <element signature="e#5481#5506#0" expanded="true" />
-            <element signature="e#7958#7984#0" expanded="true" />
+            <element signature="e#619#653#0" expanded="true" />
+            <element signature="e#779#796#0" expanded="true" />
+            <element signature="e#2519#2539#0" expanded="true" />
+            <element signature="e#4914#4939#0" expanded="true" />
+            <element signature="e#5472#5497#0" expanded="true" />
+            <element signature="e#7949#7975#0" expanded="true" />
           </folding>
         </state>
       </provider>

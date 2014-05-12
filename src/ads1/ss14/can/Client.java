@@ -15,7 +15,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
     private String uniqueID;
     private int networkXSize;
-    private int getNetworkYSize;
+    private int networkYSize;
     private int maxNumberOfDocuments = -1;
     private HashMap<String,Pair<Document,Position>> library = new HashMap<String, Pair<Document, Position>>();
     private Position position;
@@ -31,7 +31,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     public Client(String uniqueID, int networkXSize, int networkYSize) {
         this.uniqueID = uniqueID;
         this.networkXSize = networkXSize;
-        this.getNetworkYSize = networkYSize;
+        this.networkYSize = networkYSize;
 
         setArea(new Area(0, networkXSize, 0, networkYSize));
     }
@@ -83,7 +83,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
             library.remove(documentName);
             return;
         } else {
-            for(int i = 0; i < networkXSize * getNetworkYSize; i++) {
+            for(int i = 0; i < networkXSize * networkYSize; i++) {
                 Client client = (Client) searchForResponsibleClient(hashDocument(documentName,i));
 
                 if(client.library.containsKey(documentName)) {
@@ -386,7 +386,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     @Override //STUFE 2
     public void addDocumentToNetwork(Document d) throws CANException {
 
-        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+        for(int i = 0; i < (networkXSize * networkYSize); i++) {
 
             Position p = hashDocument(d.getName(),i);
             ClientInterface c = searchForResponsibleClient(p);
@@ -404,7 +404,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     @Override //STUFE 2
     public void removeDocumentFromNetwork(String documentName) {
 
-        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+        for(int i = 0; i < (networkXSize * networkYSize); i++) {
 
             Position p = hashDocument(documentName,i);
             ClientInterface c = searchForResponsibleClient(p);
@@ -422,7 +422,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
 
         Document doc = null;
 
-        for(int i = 0; i < (networkXSize * getNetworkYSize); i++) {
+        for(int i = 0; i < (networkXSize * networkYSize); i++) {
             Position p = hashDocument(documentName,i); //calculate position
 
             ClientInterface c = searchForResponsibleClient(p); //search for the client responsible for the position
@@ -438,7 +438,7 @@ public class Client implements ClientInterface, ClientCommandInterface{
     }
 
     public Position hashDocument(String doc, int i) {
-        double m = (networkXSize * getNetworkYSize);
+        double m = (networkXSize * networkYSize);
 
         double summe = 0;
 
