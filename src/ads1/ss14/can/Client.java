@@ -52,12 +52,12 @@ public class Client implements ClientInterface, ClientCommandInterface{
     }
 
     /**
-    * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
-    * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
-    * Sie koennen daher nicht einfach mit Brute Force alle Clients nach einem Dokument durchsuchen.
-    * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
-    * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
-    * */
+     * Diese Funktion darf nur fuer Clients aufgerufen werden, die das gesuchte Dokument auch tatsaechlich speichern koennten.
+     * Der Aufruf dieser Funktion bei anderen Clients kann vom Abgabesystem als Fehler bewertet werden!
+     * Sie koennen daher nicht einfach mit Brute Force alle Clients nach einem Dokument durchsuchen.
+     * Sie muessen den Algorithmus wie in Abschnitt Funtionsweise beschrieben implementieren,
+     * ansonsten kann Ihre Abgabe beim Abgabegespraech negativ beurteilt werden!
+     * */
     @Override
     public Document getDocument(String documentName) throws NoSuchDocument {
         if(library.containsKey(documentName))
@@ -191,39 +191,45 @@ public class Client implements ClientInterface, ClientCommandInterface{
         if(entryPoint == null)
             return this;
 
-        //if this client is responsible for P
-        if(this.getPosition().equals(p)) {
-            Area entry = entryPoint.getArea();
-            Pair<Area, Area> pair;
+        //otherwise search for the responsible client
+        ClientInterface client = entryPoint.searchForResponsibleClient(p);
+
+        Area entry = client.getArea();
+        Pair<Area, Area> pair;
 
         /* SPLITTING AREA */
-            if(entry.getLowerX() - entry.getUpperX() >= entry.getLowerY() - entry.getUpperY())
-            {
-                pair = entry.splitVertically();
-                this.setArea(pair.first);
-                entryPoint.setArea(pair.second);
-            }
-            else
-            {
-                pair = entry.splitHorizontally();
-                this.setArea(pair.second);
-                entryPoint.setArea(pair.first);
-            }
+        if(area.getUpperX()-area.getLowerX() < 1 || area.getUpperY()-area.getLowerY() < 1) return null;
+
+        if(entry.getLowerX() - entry.getUpperX() >= entry.getLowerY() - entry.getUpperY())
+        {
+            pair = entry.splitVertically();
+            this.setArea(pair.first);
+            client.setArea(pair.second);
+        }
+        else
+        {
+            pair = entry.splitHorizontally();
+            this.setArea(pair.second);
+            client.setArea(pair.first);
+        }
         /* END of SPLIT */
 
-            adaptNeighbours(entryPoint);
+        adaptNeighbours(client);
 
-            //reassign documents {keep original max documents}
-            for(Pair<Document,Position> docPair : this.removeUnmanagedDocuments()) {
-                entryPoint.storeDocument(docPair.first,docPair.second);
-                this.deleteDocument(docPair.first.getName());
-            }
+        /* reassigning docs */
+        int max = this.getMaxNumberOfDocuments();
+
+        this.setMaxNumberOfDocuments(Integer.MAX_VALUE);
+
+        for (Pair<Document, Position> docs : client.removeUnmanagedDocuments() ) {
+            this.storeDocument(docs.first, docs.second);
+            client.deleteDocument(docs.first.getName());
         }
-        else // if this client isnt responsible for P
-        {
-            joinNetwork(this.searchForResponsibleClient(p),p);
-        }
-        return this; //TODO check this
+
+        this.setMaxNumberOfDocuments(max);
+        /* END of reassigning docs */
+
+        return this;
     }
 
     @Override
@@ -240,40 +246,40 @@ public class Client implements ClientInterface, ClientCommandInterface{
     @Override
     public void adaptNeighbours(ClientInterface joiningClient) {
 
-        //and this as a neighbour to the joining client, and the other way around
+        //add this as a neighbour to the joining client, and the other way around
         this.addNeighbour(joiningClient);
         joiningClient.addNeighbour(this);
 
         /***********************
          *          |           *
-         *          | {joining} *
-         *          | {client}  *
+         * {joining}|  {this}   *
+         * {client} | {client}  *
          *          |           *
          *          |           *
          ************************/
         //vertical split
-        if(this.getArea().getUpperX() == joiningClient.getArea().getLowerX()) {
+        if(joiningClient.getArea().getUpperX() == this.getArea().getLowerX()) {
 
-            for(ClientInterface neighbor : neighbourList)
+            for(ClientInterface neighbor : joiningClient.getNeighbours())
             {
                 //upper neighbors
                 if (joiningClient.getArea().getUpperY() == neighbor.getArea().getLowerY()) {
 
-                    //neighbor belongs only to the joining client
-                    if(joiningClient.getArea().getLowerX() < neighbor.getArea().getLowerX()) {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
-                        neighbor.removeNeighbour(this.getUniqueID());
-                        this.removeNeighbour(neighbor.getUniqueID());
+                    //neighbor belongs only to this client
+                    if(this.getArea().getLowerX() < neighbor.getArea().getLowerX()) {
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
+                        neighbor.removeNeighbour(joiningClient.getUniqueID());
+                        joiningClient.removeNeighbour(neighbor.getUniqueID());
                         continue;
                     }
 
                     //both share the neighbor
-                    if(joiningClient.getArea().getLowerX() > neighbor.getArea().getLowerX() &&
-                            joiningClient.getArea().getLowerX() < neighbor.getArea().getUpperX())
+                    if(this.getArea().getLowerX() > neighbor.getArea().getLowerX() &&
+                            this.getArea().getLowerX() < neighbor.getArea().getUpperX())
                     {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
                     }
                 }
 
@@ -281,65 +287,65 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 if(joiningClient.getArea().getLowerY() == neighbor.getArea().getUpperY()) {
 
                     //neighbor belongs only to the joining client
-                    if(joiningClient.getArea().getLowerX() < neighbor.getArea().getLowerX()) {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
-                        neighbor.removeNeighbour(this.getUniqueID());
-                        this.removeNeighbour(neighbor.getUniqueID());
+                    if(this.getArea().getLowerX() < neighbor.getArea().getLowerX()) {
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
+                        neighbor.removeNeighbour(joiningClient.getUniqueID());
+                        joiningClient.removeNeighbour(neighbor.getUniqueID());
                         continue;
                     }
 
                     //both share the neighbor
-                    if(joiningClient.getArea().getLowerX() > neighbor.getArea().getLowerX() &&
-                            joiningClient.getArea().getLowerX() < neighbor.getArea().getUpperX())
+                    if(this.getArea().getLowerX() > neighbor.getArea().getLowerX() &&
+                            this.getArea().getLowerX() < neighbor.getArea().getUpperX())
                     {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
                     }
                 }
 
                 //right side
-                if(joiningClient.getArea().getUpperX() == neighbor.getArea().getLowerX()) {
-                    joiningClient.addNeighbour(neighbor);
-                    neighbor.addNeighbour(joiningClient);
-                    this.removeNeighbour(neighbor.getUniqueID());
-                    neighbor.removeNeighbour(this.getUniqueID());
+                if(this.getArea().getUpperX() == neighbor.getArea().getLowerX()) {
+                    this.addNeighbour(neighbor);
+                    neighbor.addNeighbour(this);
+                    joiningClient.removeNeighbour(neighbor.getUniqueID());
+                    neighbor.removeNeighbour(joiningClient.getUniqueID());
                 }
             }
             return;
         }
 
         /*********************
+         *  {joining client}  *
          *                    *
          *                    *
          *--------------------*
-         *  {joining client}  *
+         *    {new client}    *
          *                    *
          **********************/
-        if(this.getArea().getLowerY() == joiningClient.getArea().getUpperY()) {
+        if(this.getArea().getUpperY() == joiningClient.getArea().getLowerY()) {
 
-            for(ClientInterface neighbor : neighbourList)
+            for(ClientInterface neighbor : joiningClient.getNeighbours())
             {
                 //left side
                 if(joiningClient.getArea().getLowerX() == neighbor.getArea().getUpperX()) {
 
-
                     //neighbor belongs to joining client only
-                    if(joiningClient.getArea().getUpperY() >= neighbor.getArea().getUpperY())
+                    if(this.getArea().getUpperY() >= neighbor.getArea().getUpperY())
                     {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
-                        neighbor.removeNeighbour(this.getUniqueID());
-                        this.removeNeighbour(neighbor.getUniqueID());
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
+                        neighbor.removeNeighbour(joiningClient.getUniqueID());
+                        joiningClient.removeNeighbour(neighbor.getUniqueID());
                         continue;
                     }
 
                     //share the neighbor
-                    if(joiningClient.getArea().getUpperY() < neighbor.getArea().getUpperY() &&
-                            joiningClient.getArea().getLowerY() > neighbor.getArea().getLowerY())
+                    if(this.getArea().getUpperY() < neighbor.getArea().getUpperY() &&
+                            this.getArea().getLowerY() > neighbor.getArea().getLowerY())
                     {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
                     }
                 }
 
@@ -347,32 +353,32 @@ public class Client implements ClientInterface, ClientCommandInterface{
                 if(joiningClient.getArea().getUpperX() == neighbor.getArea().getLowerX()) {
 
                     //neighbor belongs to the joining client only
-                    if(joiningClient.getArea().getUpperY() >= neighbor.getArea().getUpperY()) {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
-                        neighbor.removeNeighbour(this.getUniqueID());
-                        this.removeNeighbour(neighbor.getUniqueID());
+                    if(this.getArea().getUpperY() >= neighbor.getArea().getUpperY()) {
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
+                        neighbor.removeNeighbour(joiningClient.getUniqueID());
+                        joiningClient.removeNeighbour(neighbor.getUniqueID());
                         continue;
                     }
 
                     //share the neighbor
-                    if(joiningClient.getArea().getUpperY() < neighbor.getArea().getUpperY() &&
-                            joiningClient.getArea().getUpperY() > neighbor.getArea().getLowerY())
+                    if(this.getArea().getUpperY() < neighbor.getArea().getUpperY() &&
+                            this.getArea().getUpperY() > neighbor.getArea().getLowerY())
                     {
-                        joiningClient.addNeighbour(neighbor);
-                        neighbor.addNeighbour(joiningClient);
+                        this.addNeighbour(neighbor);
+                        neighbor.addNeighbour(this);
                     }
                 }
 
                 //bottom side
                 if(joiningClient.getArea().getLowerY() == neighbor.getArea().getUpperY()) {
                     //belongs to joining client only
-                    joiningClient.addNeighbour(neighbor);
-                    neighbor.addNeighbour(joiningClient);
-                    neighbor.removeNeighbour(this.getUniqueID());
-                    this.removeNeighbour(neighbor.getUniqueID());
+                    this.addNeighbour(neighbor);
+                    neighbor.addNeighbour(this);
+                    neighbor.removeNeighbour(joiningClient.getUniqueID());
+                    joiningClient.removeNeighbour(neighbor.getUniqueID());
                 }
-                //top nothing to do
+                return;
             }
         }
     }
